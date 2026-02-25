@@ -294,7 +294,7 @@ app.get("/export/clients/excel", auth, (req, res) => {
 });
 
 app.get("/dashboard", auth, (req, res) => {
-  const dashboardPath = path.join(__dirname, "public", "dashboard.html");
+  const dashboardPath = path.join(__dirname, "public", "main.html");
   res.sendFile(dashboardPath, (err) => {
     if (err) {
       res.status(500).send("Error loading the dashboard.");
@@ -305,6 +305,7 @@ app.get("/dashboard", auth, (req, res) => {
 server.listen(3000, () => {
   console.log("Server is running at http://localhost:3000");
 });
+
 
 
 
