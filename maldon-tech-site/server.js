@@ -12,21 +12,68 @@ AWS.config.update({ accessKeyId: process.env.AWS_ACCESS_KEY_ID || "", secretAcce
 
 const s3 = new AWS.S3(); const storage = multer.memoryStorage(); const upload = multer({ storage: storage });
 
-db.serialize(() => { db.run(CREATE TABLE IF NOT EXISTS employees (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT, role TEXT));
+db.serialize(() => {
+  db.run(`CREATE TABLE IF NOT EXISTS employees (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT UNIQUE,
+    password TEXT,
+    role TEXT
+  )`);
 
-db.run(CREATE TABLE IF NOT EXISTS clients (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, location TEXT, commodity TEXT, purchase_date TEXT, delivery_date TEXT));
+  db.run(`CREATE TABLE IF NOT EXISTS clients (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    location TEXT,
+    commodity TEXT,
+    purchase_date TEXT,
+    delivery_date TEXT
+  )`);
 
-db.run(CREATE TABLE IF NOT EXISTS vendors (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, location TEXT, commodity TEXT, purchase_date TEXT, delivery_date TEXT));
+  db.run(`CREATE TABLE IF NOT EXISTS vendors (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    location TEXT,
+    commodity TEXT,
+    purchase_date TEXT,
+    delivery_date TEXT
+  )`);
 
-db.run(CREATE TABLE IF NOT EXISTS potential_clients (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, pitch_details TEXT));
+  db.run(`CREATE TABLE IF NOT EXISTS potential_clients (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    pitch_details TEXT
+  )`);
 
-db.run(CREATE TABLE IF NOT EXISTS tickets (id INTEGER PRIMARY KEY AUTOINCREMENT, employee TEXT, issue TEXT, status TEXT));
+  db.run(`CREATE TABLE IF NOT EXISTS tickets (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    employee TEXT,
+    issue TEXT,
+    status TEXT
+  )`);
 
-db.run(CREATE TABLE IF NOT EXISTS attendance (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, date TEXT, time TEXT, type TEXT));
+  db.run(`CREATE TABLE IF NOT EXISTS attendance (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT,
+    date TEXT,
+    time TEXT,
+    type TEXT
+  )`);
 
-db.run(CREATE TABLE IF NOT EXISTS payments (id INTEGER PRIMARY KEY AUTOINCREMENT, client TEXT, amount TEXT, status TEXT, date TEXT));
+  db.run(`CREATE TABLE IF NOT EXISTS payments (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    client TEXT,
+    amount TEXT,
+    status TEXT,
+    date TEXT
+  )`);
 
-db.run(CREATE TABLE IF NOT EXISTS chat_messages (id INTEGER PRIMARY KEY AUTOINCREMENT, sender TEXT, message TEXT, time TEXT)); });
+  db.run(`CREATE TABLE IF NOT EXISTS chat_messages (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sender TEXT,
+    message TEXT,
+    time TEXT
+  )`);
+});
 
 const adminPassword = bcrypt.hashSync("Maldon@1234", 10); db.run(INSERT OR IGNORE INTO employees(username,password,role) VALUES(?,?,?), [ "maldonadmin", adminPassword, "admin" ]);
 
@@ -165,3 +212,4 @@ wb.write("clients.xlsx", () => res.download("clients.xlsx"));
 app.get("/dashboard", auth, (req, res) => { res.sendFile(path.join(__dirname, "public/dashboard.html")); });
 
 server.listen(3000, () => console.log("Running at http://localhost:3000"));
+
