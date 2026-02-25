@@ -253,3 +253,31 @@ pre {
   max-height: 250px;
   overflow-y: auto;
 }
+
+.subtitle {
+  opacity: 0.7;
+  margin-bottom: 25px;
+}
+
+.kpi {
+  position: relative;
+}
+
+.growth {
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.growth.positive { color: #22c55e; }
+.growth.negative { color: #ef4444; }
+.growth.neutral { color: #94a3b8; }
+
+canvas {
+  background: rgba(255,255,255,0.03);
+  border-radius: 14px;
+  padding: 15px;
+  margin-top: 20px;
+}
