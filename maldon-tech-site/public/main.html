@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Maldon Technologies - Business Portal</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="dark">
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h2 class="logo">MaldonTech</h2>
+
+    <button onclick="showSection('dashboard')">Dashboard</button>
+    <button onclick="showSection('clients')">Clients</button>
+    <button onclick="showSection('vendors')">Vendors</button>
+    <button onclick="showSection('potential')">Potential Clients</button>
+    <button onclick="showSection('tickets')">Helpdesk</button>
+    <button onclick="showSection('attendance')">Attendance</button>
+    <button onclick="showSection('payments')">Payments</button>
+    <button onclick="showSection('chat')">Chat</button>
+    <button onclick="showSection('tools')">Tools</button>
+    <button onclick="toggleTheme()">Light / Dark</button>
+
+    <hr>
+    <p class="user">John Adebayo<br><small>Operations Manager</small></p>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main">
+
+    <!-- DASHBOARD -->
+    <div id="dashboard" class="section active">
+
+      <h1>Welcome Back, John</h1>
+      <h3>Business Overview</h3>
+
+      <div class="cards">
+
+        <div class="card">
+          <h4>Total Clients</h4>
+          <p id="countClients">0</p>
+        </div>
+
+        <div class="card">
+          <h4>Total Vendors</h4>
+          <p id="countVendors">0</p>
+        </div>
+
+        <div class="card">
+          <h4>Open Tickets</h4>
+          <p id="countTickets">0</p>
+        </div>
+
+        <div class="card">
+          <h4>Total Revenue</h4>
+          <p id="countRevenue">₹0</p>
+        </div>
+
+      </div>
+
+      <hr>
+
+      <h2>Quick Actions</h2>
+      <div class="quick-actions">
+        <button onclick="showSection('clients')">Add Client</button>
+        <button onclick="showSection('vendors')">Add Vendor</button>
+        <button onclick="showSection('tickets')">Raise Ticket</button>
+        <button onclick="showSection('payments')">Add Payment</button>
+      </div>
+
+    </div>
+
+    <!-- CLIENTS -->
+    <div id="clients" class="section">
+      <h2>Clients</h2>
+
+      <input id="cname" placeholder="Client Name">
+      <input id="cloc" placeholder="Location">
+      <input id="ccom" placeholder="Commodity">
+      <button onclick="addClient()">Add Client</button>
+
+      <pre id="clientList"></pre>
+    </div>
+
+    <!-- VENDORS -->
+    <div id="vendors" class="section">
+      <h2>Vendors</h2>
+
+      <input id="vname" placeholder="Vendor Name">
+      <input id="vloc" placeholder="Location">
+      <input id="vcom" placeholder="Commodity">
+      <button onclick="addVendor()">Add Vendor</button>
+
+      <pre id="vendorList"></pre>
+    </div>
+
+    <!-- POTENTIAL CLIENTS -->
+    <div id="potential" class="section">
+      <h2>Potential Clients</h2>
+
+      <input id="pname" placeholder="Client Name">
+      <textarea id="ppitch" placeholder="Pitch Details"></textarea>
+      <button onclick="addPotential()">Add Potential Client</button>
+
+      <pre id="potentialList"></pre>
+    </div>
+
+    <!-- HELP DESK -->
+    <div id="tickets" class="section">
+      <h2>Helpdesk Tickets</h2>
+
+      <textarea id="issue" placeholder="Describe the issue"></textarea>
+      <button onclick="addTicket()">Submit Ticket</button>
+
+      <pre id="ticketList"></pre>
+    </div>
+
+    <!-- ATTENDANCE -->
+    <div id="attendance" class="section">
+      <h2>Attendance</h2>
+
+      <button onclick="clock('In')">Clock In</button>
+      <button onclick="clock('Out')">Clock Out</button>
+
+      <pre id="attendanceList"></pre>
+    </div>
+
+    <!-- PAYMENTS -->
+    <div id="payments" class="section">
+      <h2>Payments</h2>
+
+      <input id="payClient" placeholder="Client Name">
+      <input id="payAmount" placeholder="Amount">
+      <select id="payStatus">
+        <option>Paid</option>
+        <option>Pending</option>
+      </select>
+
+      <button onclick="addPayment()">Add Payment</button>
+
+      <pre id="paymentList"></pre>
+    </div>
+
+    <!-- CHAT -->
+    <div id="chat" class="section">
+      <h2>Company Chat</h2>
+
+      <div id="chatBox" class="chat-box"></div>
+
+      <input id="chatInput" placeholder="Type a message...">
+      <button onclick="sendChat()">Send</button>
+    </div>
+
+    <!-- TOOLS -->
+    <div id="tools" class="section">
+      <h2>Business Tools</h2>
+
+      <h3>USD / INR Converter</h3>
+      <input id="usd" placeholder="USD">
+      <button onclick="convert()">Convert</button>
+      <p id="inr"></p>
+
+      <h3>Quick Calculator</h3>
+      <input id="num1" placeholder="Number 1">
+      <input id="num2" placeholder="Number 2">
+      <button onclick="calculate()">Add</button>
+      <p id="calc_result"></p>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
