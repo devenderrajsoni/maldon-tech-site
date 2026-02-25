@@ -81,7 +81,13 @@
       <input id="cname" placeholder="Client Name">
       <input id="cloc" placeholder="Location">
       <input id="ccom" placeholder="Commodity">
+      <input id="cpur" placeholder="Purchase Date">
+      <input id="cdel" placeholder="Delivery Date">
       <button onclick="addClient()">Add Client</button>
+
+      <br><br>
+      <button onclick="exportClientsExcel()">Export Excel</button>
+      <button onclick="exportClientsPDF()">Export PDF</button>
 
       <pre id="clientList"></pre>
     </div>
@@ -90,9 +96,11 @@
     <div id="vendors" class="section">
       <h2>Vendors</h2>
 
-      <input id="vname" placeholder="Vendor Name">
+       <input id="vname" placeholder="Vendor Name">
       <input id="vloc" placeholder="Location">
       <input id="vcom" placeholder="Commodity">
+      <input id="vpur" placeholder="Purchase Date">
+      <input id="vdel" placeholder="Delivery Date">
       <button onclick="addVendor()">Add Vendor</button>
 
       <pre id="vendorList"></pre>
@@ -176,6 +184,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="app.js"></script>
-
+<script src="/socket.io/socket.io.js"></script>
 </body>
 </html>
